@@ -4,6 +4,31 @@ import java.util.Stack;
 
 public class IterativeTraversals {
 
+
+
+    public static void iterativePostOrderTwoStacks(Node root){
+        Stack<Node> st1=new Stack<>();
+        Stack<Node> st2=new Stack<>();
+        if(root==null) {
+            return;
+        }
+        st1.push(root);
+        while(!st1.isEmpty()){
+            root=st1.pop();
+            st2.push(root);
+            if(root.left!=null){
+                st1.push(root.left);
+            }
+            if(root.right!=null){
+                st1.push(root.right);
+            }
+        }
+        while(!st2.isEmpty()){
+            Node temp=st2.pop();
+            System.out.print(temp.data+" ");
+        }
+
+    }
     public static void iterativeInOrder(Node root){
 
         Stack<Node> st=new Stack<>();
@@ -62,6 +87,12 @@ public class IterativeTraversals {
         BinaryTreeTraversals.inOrder(root);
         System.out.println();
         iterativeInOrder(root);
+        System.out.println();
+        BinaryTreeTraversals.postOrder(root);
+        System.out.println();
+         iterativePostOrderTwoStacks(root);
+
+
 
     }
 }
