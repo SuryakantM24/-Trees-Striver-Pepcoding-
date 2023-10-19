@@ -4,9 +4,35 @@ import java.util.Stack;
 
 public class IterativeTraversals {
 
+    public static void iterativeInOrder(Node root){
+
+        Stack<Node> st=new Stack<>();
+
+        if(root==null){
+            return;
+        }
+
+        while(true){
+            if(root!=null){
+                st.push(root);
+                root=root.left;
+            }
+            else{
+                if(st.isEmpty()){
+                    break;
+                }
+                root=st.pop();
+                System.out.print(root.data+" ");
+                root=root.right;
+            }
 
 
-    public  static void iterativePostOrder(Node root){
+        }
+
+
+    }
+
+    public  static void iterativePreOrder(Node root){
 
         Stack<Node> st=new Stack<>();
         if(root==null){
@@ -29,8 +55,13 @@ public class IterativeTraversals {
 
     public  static void main(String[] args){
         Node root=BinaryTreeInput.takeinput(true,false,0);
-        iterativePostOrder(root);
+        iterativePreOrder(root);
         System.out.println();
         BinaryTreeTraversals.preOrder(root);
+        System.out.println();
+        BinaryTreeTraversals.inOrder(root);
+        System.out.println();
+        iterativeInOrder(root);
+
     }
 }
